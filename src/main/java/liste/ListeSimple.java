@@ -3,40 +3,24 @@ package liste;
 public class ListeSimple {
     private long size;
     Noeud tete;
-    /**
-     * Retourne la taille de la liste
-     * @return la taille de la liste
-     */
+
     public long getSize() {
         return size;
     }
-    /**
-     * Ajoute un élément à la liste
-     * @param element l'élément à ajouter
-     */
+
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
     }
 
-    /**
-     * Modifie le premier élément trouvé dans la liste
-     * @param element l'élément à remplacer
-     * @param nouvelleValeur la nouvelle valeur de l'élément
-     */
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
-        while (courant != null && courant.getElement() != element)
+        while (courant != null && !courant.getElement().equals(element))
             courant = courant.getSuivant();
         if (courant != null)
             courant.setElement(nouvelleValeur);
     }
 
-    /**
-     * Modifie tous les éléments trouvés dans la liste
-     * @param element l'élément à remplacer
-     * @param nouvelleValeur la nouvelle valeur des éléments
-     */
     public void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
@@ -123,7 +107,6 @@ public class ListeSimple {
     }
 
     public Noeud getPrecedent(Noeud r) {
-        // la liste n'est pas vide puisqu'on transmet un Node de la liste et le Node existe obligatoirement
         Noeud precedent = tete;
         Noeud courant = precedent.getSuivant();
         while (courant != r) {
@@ -148,7 +131,7 @@ public class ListeSimple {
             precedentR2.setSuivant(tete);
             tete = r2;
         }
-        else{
+        else  {
             precedentR1 = getPrecedent(r1);
             precedentR1.setSuivant(tete);
             tete = r1;
@@ -157,5 +140,4 @@ public class ListeSimple {
         r2.setSuivant(r1.getSuivant());
         r1.setSuivant(temp);
     }
-
 }
