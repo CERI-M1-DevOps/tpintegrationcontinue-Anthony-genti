@@ -5,7 +5,8 @@ on :
     branches : [ main ]
 
 jobs :
-  runs-on : ubuntu-latest
+  build :
+    runs-on : ubuntu-latest
 
   steps :
     - name: se placer dans le depot courant
