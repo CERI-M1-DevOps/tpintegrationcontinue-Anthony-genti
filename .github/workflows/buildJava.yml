@@ -18,6 +18,14 @@ jobs:
           java-version: '21'
           distribution: 'corretto'
 
+      - name: mise en cache package maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
       - name: construction package maven
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
