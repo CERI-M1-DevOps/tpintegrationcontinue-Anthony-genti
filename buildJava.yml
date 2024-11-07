@@ -1,0 +1,29 @@
+name: Java CI with Maven - Test and package
+
+on :
+  pull_request :
+    branches : [ main ]
+
+jobs :
+  runs-on : ubuntu-latest
+
+  steps :
+    - name: se placer dans le depot courant
+      uses: actions/checkout@v4
+
+    - name: Choisir java 21 et corretto
+      uses: actions/setup-java@v4
+      with :
+        java-version : '21'
+        distribution : 'corretto'
+
+    - name: construction package maven
+      run: mvn -B package
+
+
+
+
+
+
+
+
