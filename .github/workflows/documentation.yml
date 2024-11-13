@@ -1,0 +1,38 @@
+name: Generate and Deploy JavaDoc
+
+on:
+  pull_request:
+    types: [closed]
+
+
+jobs:
+  build:
+    if: github.event.pull_request.merged == true
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: se placer dans le depot courant
+        uses: actions/checkout@v4
+
+      - name: Choisir java 21 et corretto
+        uses: actions/setup-java@v4
+        with:
+          java-version: '21'
+          distribution: 'corretto'
+
+      - name: mise en cache package maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Generation de la JavaDoc
+        run: mvn -B javadoc:javadoc
+
+      - name: Deploiment de la  JavaDoc
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./target/site/apidocs
