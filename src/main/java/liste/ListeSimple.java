@@ -8,11 +8,22 @@ public class ListeSimple {
         return size;
     }
 
+    /**
+     * Adds a new element to the list.
+     *
+     * @param element the element to be added
+     */
     public void ajout(int element) {
         tete = new Noeud(element, tete);
         size++;
     }
 
+    /**
+     * Modifies the first occurrence of the specified element with a new value.
+     *
+     * @param element the element to be modified
+     * @param nouvelleValeur the new value to replace the element
+     */
     public void modifiePremier(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null && !courant.getElement().equals(element))
@@ -21,6 +32,12 @@ public class ListeSimple {
             courant.setElement(nouvelleValeur);
     }
 
+    /**
+     * Modifies all occurrences of the specified element with a new value.
+     *
+     * @param element the element to be modified
+     * @param nouvelleValeur the new value to replace the element
+     */
     public void modifieTous(Object element, Object nouvelleValeur) {
         Noeud courant = tete;
         while (courant != null) {
