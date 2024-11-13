@@ -1,15 +1,15 @@
 name: Generate and Deploy JavaDoc
 
 on:
-  pull_request:
-    types: [closed]
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
 
 jobs:
   build:
-    if: github.event.pull_request.merged == true
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
       - name: Generation de la JavaDoc
         run: mvn -B javadoc:javadoc
 
-      - name: Deploiment de la  JavaDoc
+      - name: Deploiment de la JavaDoc
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
