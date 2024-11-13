@@ -4,6 +4,11 @@ public class ListeSimple {
     private long size;
     Noeud tete;
 
+    /**
+     * Returns the size of the list.
+     *
+     * @return the size of the list
+     */
     public long getSize() {
         return size;
     }
@@ -47,6 +52,11 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Returns a string representation of the list.
+     *
+     * @return a string representation of the list
+     */
     public String toString() {
         StringBuilder sb = new StringBuilder("ListeSimple(");
         Noeud n = tete;
@@ -60,6 +70,11 @@ public class ListeSimple {
         return sb.toString();
     }
 
+    /**
+     * Removes the first occurrence of the specified element from the list.
+     *
+     * @param element the element to be removed
+     */
     public void supprimePremier(Object element) {
         if (tete != null) {
             if (tete.getElement() == element) {
@@ -80,10 +95,22 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Removes all occurrences of the specified element from the list.
+     *
+     * @param element the element to be removed
+     */
     public void supprimeTous(int element) {
         tete = supprimeTousRecurs(element, tete);
     }
 
+    /**
+     * Recursively removes all occurrences of the specified element from the list.
+     *
+     * @param element the element to be removed
+     * @param tete the head of the list
+     * @return the new head of the list
+     */
     public Noeud supprimeTousRecurs(Object element, Noeud tete) {
         if (tete != null) {
             Noeud suiteListe = supprimeTousRecurs(element, tete.getSuivant());
@@ -97,6 +124,11 @@ public class ListeSimple {
         } else return null;
     }
 
+    /**
+     * Returns the second to last node in the list.
+     *
+     * @return the second to last node, or null if the list has fewer than two elements
+     */
     public Noeud getAvantDernier() {
         if (tete == null || tete.getSuivant() == null)
             return null;
@@ -111,6 +143,9 @@ public class ListeSimple {
         }
     }
 
+    /**
+     * Reverses the list.
+     */
     public void inverser() {
         Noeud precedent = null;
         Noeud courant = tete;
@@ -123,6 +158,12 @@ public class ListeSimple {
         tete = precedent;
     }
 
+    /**
+     * Returns the node preceding the specified node.
+     *
+     * @param r the node whose predecessor is to be found
+     * @return the node preceding the specified node
+     */
     public Noeud getPrecedent(Noeud r) {
         Noeud precedent = tete;
         Noeud courant = precedent.getSuivant();
@@ -133,6 +174,12 @@ public class ListeSimple {
         return precedent;
     }
 
+    /**
+     * Swaps the positions of two nodes in the list.
+     *
+     * @param r1 the first node
+     * @param r2 the second node
+     */
     public void echanger(Noeud r1, Noeud r2) {
         if (r1 == r2)
             return;
